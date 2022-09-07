@@ -5,9 +5,30 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MiniChat</title>
+    <link href="./output.css" rel="stylesheet">
   </head>
-  <body>
-    <h1>MiniChat</h1>
+  <body class=" px-14 py-5">
+    <h1 class="text-4xl mt-5">MiniChat</h1>
+    <hr>
+
+    <form id="miFormulario">
+        <fieldset>
+            <input type="text" id="txtMensaje" placeholder="Mensaje" class="mt-5 w-2/5 border-2 rounded-md py-2 pl-2">
+            <input type="submit" value="Enviar..." class="py-2 pl-3 px-14 ml-5 rounded-md  font-medium transition-colors  hover:bg-blue-600 text-white cursor-pointer bg-blue-500">
+        </fieldset>
+    </form>
+
+    <ul class="px-5 mt-10" id="misMensajes">
+        <li class="list-disc">Papaya</li>
+    </ul>
+
+
+
+
+
+
+
+
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
       integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
@@ -15,7 +36,18 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-        io('http://localhost:4000');
+        const socket = io('http://localhost:4000');
+
+        // referencias elementos del DOM
+        const formulario  = document.querySelector('#miFormulario');
+        const mensajes  = document.querySelector('#misMensajes');
+
+        socket.on('bienvenido-luis-angel',(data) => {
+            console.log(data)
+        })
+        // setTimeout(() => {
+        //     socket.emit('mensaje-cliente',{msg : 'Cliente',nombre : 'Álvaro'});
+        // }, 2000);
     </script>
   </body>
 </html>
