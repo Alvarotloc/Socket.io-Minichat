@@ -19,7 +19,6 @@
     </form>
 
     <ul class="px-5 mt-10" id="misMensajes">
-        <li class="list-disc">Papaya</li>
     </ul>
 
 
@@ -40,10 +39,27 @@
 
         // referencias elementos del DOM
         const formulario  = document.querySelector('#miFormulario');
+        const input = document.querySelector('#txtMensaje');
         const mensajes  = document.querySelector('#misMensajes');
 
-        socket.on('bienvenido-luis-angel',(data) => {
-            console.log(data)
+        formulario.addEventListener('submit',(event) => {
+            event.preventDefault();
+            const msg = input.value.trim();
+            if(msg === 0){
+                return;
+            }
+            socket.emit('mensaje-to-server',{
+                msg
+            });
+            input.value = '';
+        })
+
+
+        socket.on('mensaje-from-server',({data}) => {
+            const li = document.createElement('li');
+            li.innerHTML = data.msg;
+            li.className = 'list-disc';
+            mensajes.appendChild(li);
         })
         // setTimeout(() => {
         //     socket.emit('mensaje-cliente',{msg : 'Cliente',nombre : 'Álvaro'});
