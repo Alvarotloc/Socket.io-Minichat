@@ -21,13 +21,6 @@
     <ul class="px-5 mt-10" id="misMensajes">
     </ul>
 
-
-
-
-
-
-
-
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.2/socket.io.js"
       integrity="sha512-VJ6+sp2E5rFQk05caiXXzQd1wBABpjEj1r5kMiLmGAAgwPItw1YpqsCCBtq8Yr1x6C49/mTpRdXtq8O2RcZhlQ=="
@@ -35,7 +28,7 @@
       referrerpolicy="no-referrer"
     ></script>
     <script>
-        const socket = io('http://localhost:4000');
+        const socket = io('https://sockets-miniapp.herokuapp.com/');
 
         // referencias elementos del DOM
         const formulario  = document.querySelector('#miFormulario');
@@ -61,9 +54,6 @@
             li.className = 'list-disc';
             mensajes.appendChild(li);
         })
-        // setTimeout(() => {
-        //     socket.emit('mensaje-cliente',{msg : 'Cliente',nombre : 'Álvaro'});
-        // }, 2000);
     </script>
   </body>
 </html>
